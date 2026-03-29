@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ByteEats | Home</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<style>
+			.logo {
+				font-size: 2rem;
+				font-weight: bold;
+				color: #ff5722;
+				display: inline-flex;
+				align-items: center;
+				height: 100%;
+				padding-top: 4px;
+				text-decoration: none;
+			}
+
+			.logo:hover {
+				color: #0056b3 !important;
+			}
+
+			.food-item {
+				border: 1px solid #ccc;
+				border-radius: 10px;
+				padding: 15px;
+				text-align: center;
+				background-color: #f9f9f9;
+				transition: 0.3s;
+				min-height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			.food-item:hover {
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			}
+
+			.dropdown-menu a {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light px-4 py-2">
+			<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
+
+				<a class="logo text-decoration-none" href="/home">ByteEats</a>
+				<div class="d-flex align-items-center flex-wrap gap-2 mt-2 mt-lg-0">
+					<input class="form-control" type="search" placeholder="Search food..." aria-label="Search"
+					style="max-width: 200px" />
+					<div class="dropdown">
+						<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+							Filter
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item">By Category</a></li>
+							<li><a class="dropdown-item">By Price</a></li>
+							<li><a class="dropdown-item">Veg / Non-Veg</a></li>
+						</ul>
+					</div>
+					<a href="/login" class="text-decoration-none">Login</a>
+					<a href="/register" class="text-decoration-none">Register</a>
+					<a href="/admin/login" class="text-decoration-none">Admin Login</a>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container mt-5">
+			<% if (success_msg) { %>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<%= success_msg %>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% } %>
+
+			<% if (error_msg) { %>
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<%= error_msg %>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% } %>
+
+			<div class="container mt-4">
+				<h4 class="mb-4">Welcome, Guest!</h4>
+
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+					<% if (fooditems.length> 0) { %> 
+						<% fooditems.forEach((item)=> { %>
+							<div class="col">
+								<div class="food-item text-center">
+									<a href="/fooddetail/<%= item.id %>">
+										<img src="/uploads/<%= item.image || 'default-food.png' %>"
+											class="img-fluid rounded-circle mb-2" alt="<%= item.name %>"
+											style="width: 100px; height: 100px; object-fit: cover" />
+									</a>
+									<h6>
+										<a href="/fooddetail/<%= item.id %>" class="text-decoration-none text-dark">
+											<%= item.name %>
+										</a>
+									</h6>
+									<p class="text-muted mb-1">$<%= item.price %></p>
+									<small>
+										<%= item.category && item.category.name ? item.category.name : 'Uncategorized' %>
+
+									</small>
+								</div>
+							</div>
+						<% }) %>
+					<% } else { %>
+						<div class="col">
+							<p>No food items available.</p>
+						</div>
+					<% } %>
+					<!-- DEBUG OUTPUT -->
+<pre><%= JSON.stringify(fooditems, null, 2) %></pre>
+
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

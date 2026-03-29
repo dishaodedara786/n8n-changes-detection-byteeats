@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ByteEats | Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .sidebar {
+        width: 220px;
+        background-color: #343a40;
+        padding-top: 20px;
+        color: white;
+        min-height: 100vh;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 12px 20px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .sidebar a:hover {
+        background-color: #495057;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 30px;
+        background-color: #f1f3f5;
+      }
+
+      .navbar {
+        background-color: #d1d5db;
+        padding: 12px 20px;
+        border-radius: 8px;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        color: red !important;
+      }
+
+      .form-container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-danger {
+        font-size: 0.875em;
+      }
+    </style>
+  </head>
+
+ <!-- ... head and style remain unchanged ... -->
+
+<body>
+  <!-- Sidebar -->
+  <%- include('../partials/sidebar') %>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header/Navbar -->
+    <%- include('../partials/header') %>
+
+    <h2 class="mb-4 text-center">Add New User</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-8 form-container">
+        <form action="/admin/create/user" method="POST" enctype="multipart/form-data">
+          <!-- Name -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control <%= errors && errors.name ? 'is-invalid' : '' %>"
+              name="name"
+              id="name"
+              value="<%= typeof name !== 'undefined' ? name : '' %>"
+            />
+
+          
+            <% if (errors && errors.name) { %>
+            <div class="text-danger"><%= errors.name %></div>
+            <% } %>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control <%= errors && errors.email ? 'is-invalid' : '' %>"
+              name="email"
+              id="email"
+              value="<%= typeof email !== 'undefined' ? email : '' %>"
+            />
+          
+            <% if (errors && errors.email) { %>
+            <div class="text-danger"><%= errors.email %></div>
+            <% } %>
+          </div>
+
+          <!-- Phone -->
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input
+              type="text"
+              class="form-control <%= errors && errors.phone ? 'is-invalid' : '' %>"
+              name="phone"
+              id="phone"
+              value="<%= typeof phone !== 'undefined' ? phone : '' %>"
+            />
+            <% if (errors && errors.phone) { %>
+            <div class="text-danger"><%= errors.phone %></div>
+            <% } %>
+          </div>
+
+          <!-- Avatar -->
+          <div class="mb-3">
+            <label for="avatar" class="form-label">Avatar</label>
+            <input
+              type="file"
+              class="form-control"
+              name="avatar"
+              id="avatar"
+              accept="image/*"
+            />
+            <% if (errors && errors.avatar) { %>
+            <div class="text-danger"><%= errors.avatar %></div>
+            <% } %>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control <%= errors && errors.password ? 'is-invalid' : '' %>"
+              name="password"
+              id="password"
+            />
+            <% if (errors && errors.password) { %>
+            <div class="text-danger"><%= errors.password %></div>
+            <% } %>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="mb-4">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control <%= errors && errors.confirmPassword ? 'is-invalid' : '' %>"
+              name="confirmPassword"
+              id="confirmPassword"
+            />
+            <% if (errors && errors.confirmPassword) { %>
+            <div class="text-danger"><%= errors.confirmPassword %></div>
+            <% } %>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Add User</button>
+            <a href="/admin/users" class="btn btn-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

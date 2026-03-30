@@ -14,7 +14,7 @@ const updateProfileValidation = Joi.object({
 			"string.empty": "Name cannot be empty.",
 		}),
 	email: Joi.string().email().messages({
-		"string.email": "Email must be a valid email address.",
+		"string.email": "Email must be a valid email.",
 	}),
 	phone: Joi.string()
 		.pattern(/^\+?[0-9()-]*$/)

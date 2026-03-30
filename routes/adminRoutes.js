@@ -37,13 +37,13 @@ adminRouter.get("/edit/category/:id", CategoryController.edit);
 adminRouter.post("/edit/category/:id", CategoryController.update);
 adminRouter.get("/delete/category/:id", CategoryController.destroy);
 
-adminRouter.get("/food-items", FoodItemController.index);
-adminRouter.get("/create/food-item", FoodItemController.create);
-adminRouter.post("/create/food-item", upload.single("image"), FoodItemController.store);
-adminRouter.get("/edit/food-item/:id", FoodItemController.edit);
-adminRouter.post("/edit/food-item/:id", upload.single("image"), FoodItemController.update);
-adminRouter.get("/view/food-item/:id", FoodItemController.show);
-adminRouter.post("/delete/food-item/:id", FoodItemController.destroy);
+// adminRouter.get("/food-items", FoodItemController.index);
+// adminRouter.get("/create/food-item", FoodItemController.create);
+// adminRouter.post("/create/food-item", upload.single("image"), FoodItemController.store);
+// adminRouter.get("/edit/food-item/:id", FoodItemController.edit);
+// adminRouter.post("/edit/food-item/:id", upload.single("image"), FoodItemController.update);
+// adminRouter.get("/view/food-item/:id", FoodItemController.show);
+// adminRouter.post("/delete/food-item/:id", FoodItemController.destroy);
 
 // adminRouter.get("/logout", checkAdminAuth, AuthController.logout);
 

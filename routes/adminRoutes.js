@@ -45,6 +45,6 @@ adminRouter.post("/edit/food-item/:id", upload.single("image"), FoodItemControll
 adminRouter.get("/view/food-item/:id", FoodItemController.show);
 adminRouter.post("/delete/food-item/:id", FoodItemController.destroy);
 
-adminRouter.get("/logout", checkAdminAuth, AuthController.logout);
+// adminRouter.get("/logout", checkAdminAuth, AuthController.logout);
 
 export default adminRouter;
